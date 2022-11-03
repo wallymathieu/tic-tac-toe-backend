@@ -1,7 +1,3 @@
-#load "TicTacToe.Interpreters.fsx"
-#load "Hypermedia.fsx"
-#I "../packages"
-#r "Suave/lib/net40/Suave.dll"
 
 open System
 open System.Net
@@ -155,7 +151,7 @@ module Mappers =
 [<AutoOpen>]
 module Deserialization =
     let getPlay (req : HttpRequest) =
-        let getString rawForm = Text.Encoding.UTF8.GetString(rawForm)
+        let getString (rawForm:byte array) = Text.Encoding.UTF8.GetString(rawForm)
         req.rawForm
         |> getString
         |> JsonValue.Parse
@@ -339,13 +335,16 @@ let app =
         ]
     ]
 
-let config =
+let config commandLineArgs=
     let ip = IPAddress.Parse "0.0.0.0"
-    let [|_; port|] = fsi.CommandLineArgs
+    let [|_; port|] = commandLineArgs
     { defaultConfig with
         //logger = Logging.LoggerEx   .saneDefaultsFor Logging.LogLevel.Info
         bindings= [ HttpBinding.create HTTP ip (uint16 port) ] }
 
 interpret (ReadModel.subscribe())
 
-startWebServer config app
+[<EntryPoint>]
+let main argv =
+    startWebServer (config argv) app
+    0

@@ -1,7 +1,5 @@
 module TicTacToe.Dsls
 
-#load "TicTacToe.fsx"
-
 open TicTacToe
 
 type Continuation<'output, 'next> = 'output -> 'next

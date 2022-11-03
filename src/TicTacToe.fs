@@ -1,6 +1,4 @@
-module TicTacToe
-
-#r "../packages/Chessie/lib/net40/Chessie.dll"
+namespace TicTacToe
 
 open System
 

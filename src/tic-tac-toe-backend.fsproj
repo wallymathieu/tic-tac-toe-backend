@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>tic_tac_toe_backend</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="TicTacToe.fs" />
+    <Compile Include="TicTacToe.Dsls.fs" />
+    <Compile Include="TicTacToe.Instructions.fs" />
+    <Compile Include="TicTacToe.Interpreters.fs" />
+    <Compile Include="Hypermedia.fs" />
+    <Compile Include="App.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Chessie" Version="0.6.0" />
+    <PackageReference Include="FSharp.Data" Version="5.0.2" />
+    <PackageReference Include="Suave" Version="2.6.2" />
+  </ItemGroup>
+
+</Project>
